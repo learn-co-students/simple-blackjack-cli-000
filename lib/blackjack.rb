@@ -29,8 +29,7 @@ def end_game(number)
 end
 
 def get_user_input
-  variable = gets.chomp
-  variable
+  $stdin.gets.chomp
 end
 
 def hit?(number)
