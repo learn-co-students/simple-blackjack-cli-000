@@ -1,33 +1,45 @@
 def deal_card
-  # code #deal_card here
+  rand(11)+1
 end
 
-def display_card_total
-  # code #display_card_total here
+def display_card_total(number)
+  puts "Your cards add up to #{number}"
+  number
 end
 
 def welcome
-  # code #welcome here
+ puts "Welcome to the Blackjack Table"
 end
 
 def prompt_user
-  # code #prompt_user here
+  puts "Type 'h' to hit or 's' to stay"
 end
 
 def initial_round
-  # code #initial_round here
+  total = 0
+  2.times do
+    total+=deal_card
+  end
+  display_card_total(total)
+  total
 end
 
-def end_game
-  # code #end_game here
+def end_game(number)
+  puts "Sorry, you hit #{number}. Thanks for playing!"
 end
 
 def get_user_input
-  # code #get_user_input here
+  $stdin.gets.chomp
 end
 
-def hit?
-  # code hit? here
+def hit?(number)
+  total=number
+  prompt_user
+  response = get_user_input
+  if(response == "h")
+    total+=deal_card 
+  end
+  total
 end
 
 def invalid_command
@@ -39,6 +51,12 @@ end
 #####################################################
 
 def runner
-  # code runner here
+  welcome
+total = initial_round
+until total > 21 do
+  total = hit?(total)
+  display_card_total(total)
+end
+end_game(total)
 end
     
