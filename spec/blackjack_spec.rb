@@ -100,6 +100,15 @@ describe "#hit?" do
 
 end
 
+describe "#invalid_command" do
+  it "prints an invalid msg alert to the screen" do
+    expect($stdout).to receive(:puts).with("Invalid command, please try again!")
+    invalid_command
+  end
+end
+
+
+
 describe "#runner" do
 
   before(:each) do
