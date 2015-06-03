@@ -56,6 +56,6 @@ def runner
   welcome()
   initial_round()
   prompt_user()
-  puts "Your cards add up to 30"
-  puts "Sorry, you hit 30. Thanks for playing!"
+  display_card_total(three)
+  end_game(30)
 end
