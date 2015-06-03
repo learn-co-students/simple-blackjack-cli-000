@@ -25,7 +25,7 @@ def end_game(display_card_total)
 end
 
 def get_user_input
-  STDIN.gets.chomp
+  gets.chomp
 end
 
 def hit?(number)
