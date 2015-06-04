@@ -1,5 +1,5 @@
 def deal_card
-  # code #deal_card here
+  true
 end
 
 def display_card_total
