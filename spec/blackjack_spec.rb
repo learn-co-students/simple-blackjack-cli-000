@@ -70,11 +70,11 @@ describe "#get_user_input" do
 end
 
 describe "#hit?" do
-  before(:each) do
-    def get_user_input
-      "s"
-    end
-  end
+  # before(:each) do
+  #   def get_user_input
+  #     "s"
+  #   end
+  # end
 
   it "calls on #prompt_user then #get_user_input" do
     expect($stdout).to receive(:puts).with("Type 'h' to hit or 's' to stay")
