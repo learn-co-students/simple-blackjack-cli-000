@@ -1,10 +1,10 @@
 def deal_card
-  random_card = rand(11) + 1
-  return random_card
+    random_card = rand(11) + 1
+    return random_card
 end
 
-def display_card_total(sum_total)
- puts "Your cards add up to #{sum_total}"
+def display_card_total(total)
+ puts "Your cards add up to #{total}"
 end
 
 def welcome
@@ -17,48 +17,44 @@ end
 
 def initial_round
   sum = 0
-  2.times do 
-    sum += deal_card
-  end
+  sum = deal_card
+  sum += deal_card
   display_card_total(sum)
   return sum
 end
 
-def end_game(final_count)
-  puts "Sorry, you hit #{final_count}. Thanks for playing!"
+def end_game(total_at_end_game)
+  puts "Sorry, you hit #{total_at_end_game}. Thanks for playing!"
 end
 
 def get_user_input
-    prompt_user
-    response = gets.chomp
-    response = response.to_s
-  return response
+  gets.chomp do
+    input = input.to_s
+    puts "#{input}"
+    end
 end
 
-
-def hit?(card_total)
-  card_total.to_i
+def hit?(interger)
   prompt_user
   response = get_user_input
-    if response == "h"
-      new_card = deal_card
-      puts display_card_total(card_total)
-      final_count = card_total + new_card
-      return final_count
+  if response == "h"
+    interger += deal_card
   end
-  return card_total
+  return interger
 end
 
 def runner
+  first_hand = 0
   welcome
-  first_card = initial_round
-  next_card = hit?(first_card)
-  display_card_total(next_card)
-  until next_card > 21
-    next_card = hit?(next_card)
+  first_hand += initial_round
+  take_a_hit = hit?(first_hand)
+  until take_a_hit > 21
+    hit(first_hand)
+    take_a_hit = first_hand + hit?(first_hand)
+    display_card_total(take_a_hit)
   end
-  end_game(next_card)
-  return 30
+  end_game(take_a_hit)
+  return display_card_total(take_a_hit)
 end
 
 
