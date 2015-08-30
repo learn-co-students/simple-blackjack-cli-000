@@ -40,15 +40,15 @@ end
 
 def hit?(current_total)
   # code hit? here
-  
+  running_total = current_total
   prompt_user
   user_input = get_user_input
   if user_input == 'h'
-    current_total += deal_card
-    puts "deal Card"
+    running_total += deal_card
   elsif user_input == 's'
-    current_total
+    running_total
   end
+  running_total
 end
 
 def invalid_command
@@ -63,16 +63,22 @@ def runner
   # code runner here
 
   welcome
+  first_round = 0 #to keep from displaying total cards twice on intial round
+
   hand_total = initial_round
-  
+  #hand_total += hit?(hand_total)
 
   until hand_total > 21
+
+    hand_total = hit?(hand_total)
     display_card_total(hand_total)
-    new_total = hit?(hand_total)
+  
+    
+    first_round = 1
   end
-  end_game(new_total)
+  end_game(hand_total)
 
 end
    
 
-   runner 
+   #runner 
