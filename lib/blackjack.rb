@@ -37,17 +37,20 @@ def hit?(card_total)
   user = get_user_input
   if user == "s"
     card_total
-  else
+  elsif user == "h"
     card_total = card_total + deal_card
     display_card_total(card_total)
     card_total
+  else
+    invalid_command
   end
     
 end
 
 
 def invalid_command
-  # code invalid_command here
+  puts "Sorry, your command is not valid, try again."
+  get_user_input
 end
 
 #####################################################
