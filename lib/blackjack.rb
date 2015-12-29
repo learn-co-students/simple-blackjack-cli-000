@@ -65,19 +65,7 @@ def runner
   x= initial_round
   until x > 21 do
     x = hit?(x)
-#     x = (x + deal_card)
     display_card_total(x)
   end
     end_game(x)
 end
-
-# def runner
-#   welcome
-#   card_total = initial_round
-#   until card_total > 21
-#     card_total = hit?(card_total)
-#     display_card_total(card_total)
-#   end
-#   end_game(card_total)
-# end
-
