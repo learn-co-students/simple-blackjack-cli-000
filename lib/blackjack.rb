@@ -1,17 +1,21 @@
 def welcome
+  sleep(0.5)
   puts "Welcome to the Blackjack Table"
 end
 
 def deal_card
-  return rand(1..11)
-end
-
-def display_card_total(total)
-  puts "Your cards add up to #{total}"
+  rand(1..11)
 end
 
 def prompt_user
+  sleep(0.5)
   puts "Type 'h' to hit or 's' to stay"
+end
+
+def display_card_total(total)
+  sleep(0.5)
+  puts "Your cards add up to #{total}"
+  return total
 end
 
 def get_user_input
@@ -23,34 +27,19 @@ def end_game(total)
 end
 
 def initial_round
-  total = deal_card + deal_card
-  display_card_total(total)
-  return total
+  display_card_total(deal_card + deal_card)
 end
 
 def hit?(total)
   prompt_user
-  user_input = get_user_input
-
-  if user_input == "s"
+  input = get_user_input
+  if input == "s"
     return total
-  elsif user_input == "h"
-    return total + deal_card
+  elsif input == "h"
+    return deal_card + total
   else
     invalid_command
-    return total
-    repeat
-  end
-end
-
-def repeat
-  prompt_user
-  user_input = get_user_input
-
-  if user_input == "s"
-    return total
-  else user_input == "h"
-    return total + deal_card
+    hit?(total)
   end
 end
 
@@ -58,17 +47,13 @@ def invalid_command
   puts "Please enter a valid command"
 end
 
-#####################################################
-# get every test to pass before coding runner below #
-#####################################################
-
 def runner
   welcome
-  total = initial_round
-  until total > 21 do
-    total = hit?(total)
-    display_card_total(total)
+  sum_dealt = initial_round
+  until sum_dealt > 21
+    sum_dealt = hit?(sum_dealt)
+    display_card_total(sum_dealt)
   end
-  end_game(total)
+  end_game(sum_dealt)
 end
-      
+
